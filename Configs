@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Pastas para Backup e Restauração 
+DIR01="/path/to/Imagens"
+DIR02="/path/to/.config"
+
+# Ponto de Montagem do HD externo 
+DESTINATIONDIR="/path/to/mount/external-hard-drive"
+
+# Caminho do Hd Externo (checar "fdisk -l")
+DEVICE="/dev/sxx"
+
+# Lista de inclusao
+INCLIST="/path/to/Rsync/include-lst" 
+
+# Arquivo de Log		
+LOGFILE_PATH="/path/to/Backup-$(date +%Y-%m-%d_%H-%M).txt"
+

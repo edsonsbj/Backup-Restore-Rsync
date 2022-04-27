@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Pastas para Backup e Restauração Nextcloud snap 
+NEXTCLOUD_CONFIG="/var/snap/nextcloud/common/backups"
+NEXTCLOUD_DATA="/path/to/Nextcloud/data"
+
+# Ponto de Montagem do HD externo 
+DESTINATIONDIR="/path/to/mont/HD-Externo"
+
+# Caminho do Hd Externo (checar "fdisk -l")
+DEVICE="/dev/sxx"
+
+# Arquivo Tar-GZ
+ARQUIVO_TAR="$DESTINATIONDIR/Nc-Configs-$(date +%Y-%m-%d_%H-%M).tar.gz"
+
+# Lista de inclusao Exclusão
+
+# Use --exclude-from
+EXCLUDELIST="/path/to/exclude-lst" 
+
+# Use --files-from
+INCLUDELIST="/path/to/include-lst"
+
+# Arquivo de Log		
+LOGFILE_PATH="/path/to/log/Rsync-$(date +%Y-%m-%d_%H-%M).txt"
+

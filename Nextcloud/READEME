@@ -1,0 +1,13 @@
+  echo >> $LOGFILE_PATH
+  echo "---------- Algumas Funcionalidades. ----------" >> $LOGFILE_PATH
+  
+# Restaure as Permissões da pasta data nextcloud
+
+chown -R root:root "$NEXTCLOUD_DATA" >> $LOGFILE_PATH 
+chmod 0770 "$NEXTCLOUD_DATA" >> $LOGFILE_PATH 
+
+# Aplicando Permissões em partições NTFS
+# Execute o comando sudo blkid -o list -w /dev/null e anote o uuid da partição montada.
+
+# Adicione a Partição ou HD externo ao Fstab com editor de sua preferencia 
+UUID=040276482A715ABE /mnt/Nextcloud ntfs-3g utf8,uid=root,gid=root,umask=0007,noatime 0 0
