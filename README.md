@@ -63,7 +63,7 @@ Este Script realiza o Backup e a Restauração das configurações do `Nexcloud`
 
 **Para Intalação que executem o snap Nextcloud e o Plex juntos**
 
-. Utilize este outro script `https://github.com/edsonsbj/Nextcloud-Plex-Onlyoffice-Aria2c-qBitorrent` para realizar a instalação e configuração dos pacotes.
+. Utilize este outro script https://github.com/edsonsbj/Nextcloud-Plex-Onlyoffice-Aria2c-qBitorrent para realizar a instalação e configuração dos pacotes.
 
 . Se apos a restauração aparece algum erro relacionado a sua pasta de dados e ao arquivo ocdata execute estes comandos:
 
