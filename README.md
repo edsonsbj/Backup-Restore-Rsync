@@ -36,26 +36,6 @@ Este Script realiza o Backup e a Restauração de um servidor `Nextcloud` instal
 2. instale o snap nextcloud.
 3. Execute o script `restore.sh.`
 
-## **Backup & Restauração Servidores Nextcloud**
-
-Este Script realiza o Backup e a Restauração de um servidor `Nextcloud` instalado via `snap` 
-
-**Realizando Backup**
-
-1. Instale o Git se não estiver instalado.
-2. Clone este Repositório `git clone,` ou baixe e descompacte o arquivo zip.
-3. Copie os arquivos da Pasta Nextcloud para uma pasta de sua preferencia. 
-4. Altere as variáveis do arquivo `Configs` conforme suas necessidades.
-5. Inclua os arquivos que não queira fazer backup de sua pasta `./Nextcloud/data` no arquivo `exclude-lst`. Se a intensão for realizar backup somente de algumas pastas ou usúarios, inclua os no arquivo `include-lst` e altere o comando no script de `--exclude-from` para `--files-from`.
-6. Não Altere a Variável `NEXTCLOUD_CONFIG.`
-7. Torne os scripts `backup.sh.` e `restore.sh.` executáveis
-
-**Realizando Restauração**
-
-1. Certifique-se que sua distribuição já esteja habilitado o suporte a snap, se não o faça.
-2. instale o snap nextcloud.
-3. Execute o script `restore.sh.`
-
 ## **Backup & Restauração Servidores Nextcloud e PLEX**
 
 Este Script realiza o Backup e a Restauração das configurações do `Nexcloud` e do `Plexmediaserver` instalados por meio de pacotes `snap`. Este script tambem faz backup de sua pasta `/Nextcloud/data.`
