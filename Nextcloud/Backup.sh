@@ -3,7 +3,9 @@
 
 # Script Simples para a realização de backup e restauração de pastas e arquivos usando Rsync em HD Externo 
  
-CONFIG="/Path/to/Nextcloud-Backup-Restore/Configs"
+# Adicione aqui o caminho para o Arquivo Configs
+CONFIG="/Path/to/Nextcloud-Backup-Restore/Configs" 
+
 . ${CONFIG}
 
 # NOT CHANGE
@@ -62,7 +64,7 @@ sudo nextcloud.occ maintenance:mode --off >> $LOGFILE_PATH
 
 # Remover Arquivos Residuais
 
-rm -rf $NEXTCLOUD_CONFIG
+rm -rf $NEXTCLOUD_CONFIG/backups/
 
   # Worked fine? Umount.
   [ "$?" = "0" ] && {
