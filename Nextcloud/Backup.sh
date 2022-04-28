@@ -27,7 +27,7 @@ if [ "$?" != "0" ]; then
   echo "---------- Dispositivo não montado. Monte $DEVICE ----------" >> $LOGFILE_PATH
   eval mount -t auto "$DEVICE" "$DESTINATIONDIR" "$NULL_DEVICE"
 else
-  # Se não, grep o ponto de montagem e altere o $DESTINATIONDIR
+  # Se sim, grep o ponto de montagem e altere o $DESTINATIONDIR
   DESTINATIONDIR=$(grep "$DEVICE" "$MOUNT_FILE" | cut -d " " -f 2)
 fi
 
