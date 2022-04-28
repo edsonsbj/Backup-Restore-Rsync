@@ -2,8 +2,10 @@
 #
 
 # Script Simples para a realização de backup e restauração de pastas e arquivos usando Rsync em HD Externo 
- 
-CONFIG="/Path/to/Nextcloud-Backup-Restore/Configs"
+
+# Adicione aqui o caminho para o Arquivo Configs
+CONFIG="/Path/to/Nextcloud-Backup-Restore/Configs" 
+
 . ${CONFIG}
 
 # NOT CHANGE
@@ -51,10 +53,6 @@ sudo rsync -avh --progress "$ARQUIVO_TAR" "$NEXTCLOUD_CONFIG" 1>> $LOGFILE_PATH
 
 tar -zvf $ARQUIVO_TAR >> $LOGFILE_PATH
 
-# Remover Arquivos Residuais
-
-rm -rf $ARQUIVO_TAR >> $LOGFILE_PATH
-
 # Importando Configurações. Informe a data do arquvo extraido dentro da pasta backups no campo $date 
 
 sudo nextcloud.import $NEXTCLOUD_CONFIG/$date >> $LOGFILE_PATH 
@@ -67,7 +65,7 @@ echo Done!!
 sudo nextcloud.occ maintenance:mode --on >> $LOGFILE_PATH
 
 backup() {
-sudo rsync -avh --delete --dry-run --progress "$NEXTCLOUD_DATA" "$DESTINATIONDIR" --exclude-from "$EXCLUDELIST" 1>> $LOGFILE_PATH
+sudo rsync -avh --progress "$DESTINATIONDIR" "$NEXTCLOUD_DATA" 1>> $LOGFILE_PATH
 
 # Desativando Modo de Manutenção Nextcloud
 
