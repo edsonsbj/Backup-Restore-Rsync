@@ -2,7 +2,6 @@
 
 # Pastas para Backup e Restauração 
 DIR01="/path/to/Imagens"
-DIR02="/path/to/.config"
 
 # Ponto de Montagem do HD externo 
 DESTINATIONDIR="/path/to/mount/external-hard-drive"
