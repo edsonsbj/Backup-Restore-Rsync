@@ -1,6 +1,7 @@
 ### **Script de backup e restauração usando Rsync**
 
 Scripts de backup e restauração que utiliza o `rsync` e `tar`como forma de backup e restauração de seus arquivos e configurações. 
+Estes Scripts assume que você fara backups em uma midia externa com um espaço consideravel para armazenar seus backups.
 
 **Realizando Backup**
 
@@ -56,3 +57,20 @@ Este Script realiza o Backup e a Restauração das configurações do `Nexcloud`
 2. instale o snap nextcloud.
 3. Instale o snap plexmediaserver 
 4. Execute o script `restore.sh.`
+
+# **Algumas Observações**
+
+**Para Intalação que executem o snap Nextcloud e o Plex juntos**
+
+. Utilize este outro script `https://github.com/edsonsbj/Nextcloud-Plex-Onlyoffice-Aria2c-qBitorrent` para realizar a instalação e configuração dos pacotes.
+
+. Se apos a restauração aparece algum erro relacionado a sua pasta de dados e ao arquivo ocdata execute estes comandos:
+
+Partições Linux
+`chown -R root:root /patch/Nextcloud/data` `chmod 0770 /patch/Nextcloud/data`.
+
+Partições NTFS
+
+Execute o comando `sudo blkid -o list -w /dev/null` e anote o uuid da partição montada.
+Adicione ao seu arquivo fstab `UUID=040276482A715ABE /mnt/Nextcloud ntfs-3g utf8,uid=root,gid=root,umask=0007,noatime 0 0`. Não Esqueça de Substituir o `UUID` e ponto de montagem `/mnt/Nextcloud` do exemplo acima para o uuid e ponto de montagem correspondentes a sua unidade.
+ 
