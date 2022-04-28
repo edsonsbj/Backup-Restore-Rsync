@@ -8,57 +8,68 @@ CONFIG="/Path/to/Nextcloud-Backup-Restore/Configs"
 
 . ${CONFIG}
 
-# NOT CHANGE
+# NÃO ALTERE
 MOUNT_FILE="/proc/mounts"
 NULL_DEVICE="1> /dev/null 2>&1"
 REDIRECT_LOG_FILE="1>> $LOGFILE_PATH 2>&1"
 # ------------------------------------------------------------------------ #
 # -------------------------------TESTS----------------------------------------- #
-# Is root?
+# Script Executado como root?
 [ "$UID" != "0" ] && {
-  echo "---------- You must be root ----------" >> $LOGFILE_PATH
+  echo "---------- Você deve ser root ----------" >> $LOGFILE_PATH
   exit 1
 }
 
-# Is device mounted?
+# O Dispositivo está Montado?
 grep -q "$DEVICE" "$MOUNT_FILE"
 if [ "$?" != "0" ]; then
-  # If not, mount to $DESTINATIONDIR
-  echo "---------- Device not mounted. Mounting $DEVICE ----------" >> $LOGFILE_PATH
+  # Se não, monte em $DESTINATIONDIR
+  echo "---------- Dispositivo não montado. Monte $DEVICE ----------" >> $LOGFILE_PATH
   eval mount -t auto "$DEVICE" "$DESTINATIONDIR" "$NULL_DEVICE"
 else
-  # If yes, grep the mount point and change the $DESTINATIONDIR
+  # Se não, grep o ponto de montagem e altere o $DESTINATIONDIR
   DESTINATIONDIR=$(grep "$DEVICE" "$MOUNT_FILE" | cut -d " " -f 2)
 fi
 
-cd "/"
-
-# Is there write permissions?
+# Há permissões de excrita e gravação?
 [ ! -w "$DESTINATIONDIR" ] && {
-  echo "---------- Do not have write permissions ----------" >> $LOGFILE_PATH
+  echo "---------- Não tem permissões de gravação ----------" >> $LOGFILE_PATH
   exit 1
 }
 ## ------------------------------------------------------------------------ #
 
-  echo "---------- Back-up initiated. ----------" >> $LOGFILE_PATH
+   echo "---------- Iniciando Backup. ----------" >> $LOGFILE_PATH
 
-# Exportando Configurações Snap Nextcloud
+# -------------------------------FUNCTIONS----------------------------------------- #
+  echo >> $LOGFILE_PATH
+  echo "---------- Backup das Configurações. ----------" >> $LOGFILE_PATH
+  # 
+
+# Vá Para a Raiz
+
+cd "/"
+
+# Exportando Configurações
 
 sudo nextcloud.export -abc >> $LOGFILE_PATH
 
 # Compactar Diretorio de Backup para melhor desempenho ao transferir 
 
-tar -czvf $ARQUIVO_TAR $NEXTCLOUD_CONFIG >> $LOGFILE_PATH
+tar -czvf $ARQUIVO_TAR $NEXTCLOUD_CONFIG/backups >> $LOGFILE_PATH
 
+echo
+echo Done!!
+
+  echo "---------- Backup Nextcloud Data. ----------" >> $LOGFILE_PATH
+  
 # Ativar Modo de Manutenção Nextcloud
 
 sudo nextcloud.occ maintenance:mode --on >> $LOGFILE_PATH
-
-# -------------------------------FUNCTIONS----------------------------------------- #
+  
 backup() {
 sudo rsync -avh --delete --progress "$NEXTCLOUD_DATA" "$DESTINATIONDIR" --exclude-from "$EXCLUDELIST" 1>> $LOGFILE_PATH
 
-# Ativar Modo de Manutenção Nextcloud
+# Desativando Modo de Manutenção Nextcloud
 
 sudo nextcloud.occ maintenance:mode --off >> $LOGFILE_PATH
 
@@ -66,9 +77,9 @@ sudo nextcloud.occ maintenance:mode --off >> $LOGFILE_PATH
 
 rm -rf $NEXTCLOUD_CONFIG/backups/
 
-  # Worked fine? Umount.
+  # Funcionou bem? Remova a Midia Externa
   [ "$?" = "0" ] && {
-    echo "---------- Back-up finished. Umounting $DEVICE ----------" >> $LOGFILE_PATH
+    echo "---------- Backup Finalizado. Desmonte a Unidade $DEVICE ----------" >> $LOGFILE_PATH
  	eval umount "$DEVICE" "$NULL_DEVICE"
 	eval sudo udisksctl power-off -b "${DEVICE}" >>$LOGFILE_PATH
     exit 0
@@ -76,7 +87,7 @@ rm -rf $NEXTCLOUD_CONFIG/backups/
 }
 
 preparelogfile () {
-  # Insert a simple header to the log file with the timestamp
+  # Insira um cabeçalho simples no arquivo de log com o carimbo de data/hora
   echo "----------[ $(date) ]----------" >> $LOGFILE_PATH
 }
 
