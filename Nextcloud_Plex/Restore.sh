@@ -44,7 +44,7 @@ cd "/"
   echo >> $RESTLOGFILE_PATH
   echo "---------- Restaurando Configurações. ----------" >> $RESTLOGFILE_PATH # 
   
-# Pare O serviço Plex 
+# Pare o Plex 
 
 sudo snap stop plexmediaserver
 
@@ -57,6 +57,10 @@ tar -vxf $ARQUIVO_TAR $CONFIG_PLEX_RESTORE -C $PLEX_CONFIG >> $RESTLOGFILE_PATH
 # Importando Configurações. Informe a data do arquvo extraido dentro da pasta backups no campo $date 
 
 sudo nextcloud.import $NEXTCLOUD_CONFIG/backups/$date >> $RESTLOGFILE_PATH 
+
+# Inicie o Plex 
+
+sudo snap start plexmediaserver
 
 echo
 echo Done!!
