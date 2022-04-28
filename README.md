@@ -9,10 +9,11 @@ Estes Scripts assume que você fara backups em uma midia externa com um espaço 
 1. Instale o Git se não estiver instalado.
 2. Clone este Repositório` git clone,`ou baixe e descompacte o arquivo zip.
 3. Copie os arquivos `backup.sh Configs e include-lst` para uma pasta de sua preferencia.
-4. Altere as variáveis do arquivo  `Configs`conforme suas necessidades. 
-5. Vá para a pasta onde colocou os scripts e os torne executáveis com o comando `sudo chmod a+x`.
-6. Execute o backup: `sudo /path/to/backup.sh`.
-7. Agende o backup no Cron: `00 00** * sudo /path/to/backup.sh`
+4. Altere as variáveis do arquivo `Configs` conforme suas necessidades. 
+5. Adicione o caminho para o arquivo `Configs` nos scripts `backup.sh` e `restore.sh` na parte `CONFIG="/Path/to/Nextcloud-Backup-Restore/Configs"`.
+6. Vá para a pasta onde colocou os scripts e os torne executáveis com o comando `sudo chmod a+x`.
+7. Execute o backup: `sudo /path/to/backup.sh`.
+8. Agende o backup no Cron: `00 00** * sudo /path/to/backup.sh`
 
 **Restauração**
 
@@ -28,9 +29,10 @@ Este Script realiza o Backup e a Restauração de um servidor `Nextcloud` instal
 2. Clone este Repositório `git clone,` ou baixe e descompacte o arquivo zip.
 3. Copie os arquivos da Pasta Nextcloud para uma pasta de sua preferencia. 
 4. Altere as variáveis do arquivo `Configs` conforme suas necessidades.
-5. Inclua os arquivos que não queira fazer backup de sua pasta `./Nextcloud/data` no arquivo `exclude-lst`. Se a intensão for realizar backup somente de algumas pastas ou usúarios, inclua os no arquivo `include-lst` e altere o comando no script de `--exclude-from` para `--files-from`.
-6. Não Altere a Variável `NEXTCLOUD_CONFIG.`
-7. Torne os scripts `backup.sh.` e `restore.sh.` executáveis
+5. Adicione o caminho para o arquivo `Configs` nos scripts `backup.sh` e `restore.sh` na parte `CONFIG="/Path/to/Nextcloud-Backup-Restore/Configs"`.
+6. Inclua os arquivos que não queira fazer backup de sua pasta `./Nextcloud/data` no arquivo `exclude-lst`. Se a intensão for realizar backup somente de algumas pastas ou usúarios, inclua os no arquivo `include-lst` e altere o comando no script de `--exclude-from` para `--files-from`.
+7. Não Altere a Variável `NEXTCLOUD_CONFIG.`
+8. Torne os scripts `backup.sh.` e `restore.sh.` executáveis
 
 **Realizando Restauração**
 
@@ -48,9 +50,10 @@ Este Script realiza o Backup e a Restauração das configurações do `Nexcloud`
 2. Clone este Repositório `git clone,` ou baixe e descompacte o arquivo zip.
 3. Copie os arquivos da Pasta Nextcloud Plex para uma pasta de sua preferencia. 
 4. Altere as variáveis do arquivo `Configs` conforme suas necessidades.
-5. Inclua os arquivos que não queira fazer backup de sua pasta `./Nextcloud/data` no arquivo `exclude-lst`. Se a intensão for realizar backup somente de algumas pastas ou usúarios, inclua os no arquivo `include-lst` e altere o comando no script de `--exclude-from` para `--files-from`.
-6. Não Altere as variáveis `NEXTCLOUD_CONFIG.` `PLEX_CONFIG` `CONFIG_NC_RESTORE` `CONFIG_PLEX_RESTORE`. Os Caminhos referente a estas variáveis já estão com seus caminhos de backup e restauração corretos para um backup de configurações snap.
-7. Torne os scripts `backup.sh.` e `restore.sh.` executáveis
+5. 5. Adicione o caminho para o arquivo `Configs` nos scripts `backup.sh` e `restore.sh` na parte `CONFIG="/Path/to/Nextcloud-Backup-Restore/Configs"`.
+6. Inclua os arquivos que não queira fazer backup de sua pasta `./Nextcloud/data` no arquivo `exclude-lst`. Se a intensão for realizar backup somente de algumas pastas ou usúarios, inclua os no arquivo `include-lst` e altere o comando no script de `--exclude-from` para `--files-from`.
+7. Não Altere as variáveis `NEXTCLOUD_CONFIG.` `PLEX_CONFIG` `CONFIG_NC_RESTORE` `CONFIG_PLEX_RESTORE`. Os Caminhos referente a estas variáveis já estão com seus caminhos de backup e restauração corretos para um backup de configurações snap.
+8. Torne os scripts `backup.sh.` e `restore.sh.` executáveis
 
 **Realizando Restauração**
 
