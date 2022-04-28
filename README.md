@@ -1,6 +1,7 @@
 ### **Script de backup e restauração usando Rsync**
 
-Scripts de backup e restauração que utiliza o `rsync` e `tar`como forma de backup e restauração de seus arquivos e configurações. 
+Scripts de backup e restauração que utiliza o `rsync` e `tar`como forma de backup e restauração de seus arquivos e configurações.
+
 Estes Scripts assume que você fara backups em uma midia externa com um espaço consideravel para armazenar seus backups.
 
 **Realizando Backup**
@@ -67,6 +68,7 @@ Este Script realiza o Backup e a Restauração das configurações do `Nexcloud`
 . Se apos a restauração aparece algum erro relacionado a sua pasta de dados e ao arquivo ocdata execute estes comandos:
 
 Partições Linux
+
 `chown -R root:root /patch/Nextcloud/data` `chmod 0770 /patch/Nextcloud/data`.
 
 Partições NTFS
