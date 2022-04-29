@@ -50,9 +50,31 @@ Este Script realiza o Backup e a Restauração das configurações do `Nexcloud`
 2. Clone este Repositório `git clone,` ou baixe e descompacte o arquivo zip.
 3. Copie os arquivos da Pasta Nextcloud Plex para uma pasta de sua preferencia. 
 4. Altere as variáveis do arquivo `Configs` conforme suas necessidades.
-5. 5. Adicione o caminho para o arquivo `Configs` nos scripts `backup.sh` e `restore.sh` na parte `CONFIG="/Path/to/Nextcloud-Backup-Restore/Configs"`.
+5. Adicione o caminho para o arquivo `Configs` nos scripts `backup.sh` e `restore.sh` na parte `CONFIG="/Path/to/Nextcloud-Backup-Restore/Configs"`.
 6. Inclua os arquivos que não queira fazer backup de sua pasta `./Nextcloud/data` no arquivo `exclude-lst`. Se a intensão for realizar backup somente de algumas pastas ou usúarios, inclua os no arquivo `include-lst` e altere o comando no script de `--exclude-from` para `--files-from`.
-7. Não Altere as variáveis `NEXTCLOUD_CONFIG.` `PLEX_CONFIG` `CONFIG_NC_RESTORE` `CONFIG_PLEX_RESTORE`. Os Caminhos referente a estas variáveis já estão com seus caminhos de backup e restauração corretos para um backup de configurações snap.
+7. Não Altere as variáveis `NEXTCLOUD_CONFIG.` `PLEX_CONFIG` `TAR_NEXTCLOUD_CONFIG` `TAR_EPLEX_CONFIG`. Os Caminhos referente a estas variáveis já estão com seus caminhos de backup e restauração corretos para um backup de configurações snap.
+8. Torne os scripts `backup.sh.` e `restore.sh.` executáveis
+
+**Realizando Restauração**
+
+1. Certifique-se que sua distribuição já esteja habilitado o suporte a snap, se não o faça.
+2. instale o snap nextcloud.
+3. Instale o snap plexmediaserver 
+4. Execute o script `restore.sh.`
+
+## **Backup & Restauração Servidores Nextcloud e Emby (Jellyfn)**
+
+Este Script realiza o Backup e a Restauração das configurações de seu servidor `Nexcloud` e `emby`. Este script tambem faz backup de sua pasta `/Nextcloud/data.`
+
+**Realizando Backup**
+
+1. Instale o Git se não estiver instalado.
+2. Clone este Repositório `git clone,` ou baixe e descompacte o arquivo zip.
+3. Copie os arquivos da Pasta Nextcloud Plex para uma pasta de sua preferencia. 
+4. Altere as variáveis do arquivo `Configs` conforme suas necessidades.
+5. Adicione o caminho para o arquivo `Configs` nos scripts `backup.sh` e `restore.sh` na parte `CONFIG="/Path/to/Nextcloud-Backup-Restore/Configs"`.
+6. Inclua os arquivos que não queira fazer backup de sua pasta `./Nextcloud/data` no arquivo `exclude-lst`. Se a intensão for realizar backup somente de algumas pastas ou usúarios, inclua os no arquivo `include-lst` e altere o comando no script de `--exclude-from` para `--files-from`.
+7. Não Altere as variáveis `NEXTCLOUD_CONFIG.` `EMBY_CONFIG` `TAR_NEXTCLOUD_CONFIG` `TAR_EMBY_CONFIG`. Os Caminhos referente a estas variáveis já estão com seus caminhos de backup e restauração corretos para um backup de configurações snap e instações padrão do emby (jellyfn).
 8. Torne os scripts `backup.sh.` e `restore.sh.` executáveis
 
 **Realizando Restauração**
