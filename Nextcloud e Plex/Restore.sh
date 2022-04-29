@@ -2,10 +2,8 @@
 #
 
 # Script Simples para a realização de backup e restauração de pastas e arquivos usando Rsync em HD Externo 
-
-# Adicione aqui o caminho para o Arquivo Configs
-CONFIG="/Path/to/Nextcloud-Backup-Restore/Configs" 
-
+ 
+CONFIG="/Path/to/Nextcloud-Backup-Restore/Configs"
 . ${CONFIG}
 
 # NÃO ALTERE
@@ -31,6 +29,8 @@ else
   DESTINATIONDIR=$(grep "$DEVICE" "$MOUNT_FILE" | cut -d " " -f 2)
 fi
 
+cd "/"
+
 # Há permissões de gravação
 [ ! -w "$DESTINATIONDIR" ] && {
   echo "---------- Não tem permissões de gravação ----------" >> $RESTLOGFILE_PATH
@@ -43,18 +43,24 @@ fi
 # -------------------------------FUNCTIONS----------------------------------------- #
   echo >> $RESTLOGFILE_PATH
   echo "---------- Restaurando Configurações. ----------" >> $RESTLOGFILE_PATH # 
+  
+# Pare o Plex 
 
-# Vá Para a Raiz
-
-cd "/"
+sudo snap stop plexmediaserver
 
 # Extraindo Arquivos
 
 tar -vxf $ARQUIVO_TAR $TAR_NEXTCLOUD_CONFIG -C $NEXTCLOUD_CONFIG >> $RESTLOGFILE_PATH
 
+tar -vxf $ARQUIVO_TAR $TAR_PLEX_CONFIG -C $PLEX_CONFIG >> $RESTLOGFILE_PATH
+
 # Importando Configurações. Informe a data do arquvo extraido dentro da pasta backups no campo $date 
 
 sudo nextcloud.import -abc $NEXTCLOUD_CONFIG/backups/$date >> $RESTLOGFILE_PATH 
+
+# Inicie o Plex 
+
+sudo snap start plexmediaserver
 
 echo
 echo Done!!

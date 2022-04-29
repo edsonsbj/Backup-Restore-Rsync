@@ -1,0 +1,8 @@
+/var/snap/nextcloud/common/backups
+/var/lib/emby/config
+/var/lib/emby/data
+/var/lib/emby/metadata
+/var/lib/emby/plugins
+/var/lib/emby/root
+/var/lib/emby/ssl
+

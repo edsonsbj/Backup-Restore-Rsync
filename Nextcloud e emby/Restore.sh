@@ -2,10 +2,8 @@
 #
 
 # Script Simples para a realização de backup e restauração de pastas e arquivos usando Rsync em HD Externo 
-
-# Adicione aqui o caminho para o Arquivo Configs
-CONFIG="/Path/to/Nextcloud-Backup-Restore/Configs" 
-
+ 
+CONFIG="/Path/to/Nextcloud-Backup-Restore/Configs"
 . ${CONFIG}
 
 # NÃO ALTERE
@@ -31,6 +29,8 @@ else
   DESTINATIONDIR=$(grep "$DEVICE" "$MOUNT_FILE" | cut -d " " -f 2)
 fi
 
+cd "/"
+
 # Há permissões de gravação
 [ ! -w "$DESTINATIONDIR" ] && {
   echo "---------- Não tem permissões de gravação ----------" >> $RESTLOGFILE_PATH
@@ -43,18 +43,33 @@ fi
 # -------------------------------FUNCTIONS----------------------------------------- #
   echo >> $RESTLOGFILE_PATH
   echo "---------- Restaurando Configurações. ----------" >> $RESTLOGFILE_PATH # 
+  
+# Pare o emby 
 
-# Vá Para a Raiz
-
-cd "/"
+sudo systemctl stop emby-server.service
 
 # Extraindo Arquivos
 
 tar -vxf $ARQUIVO_TAR $TAR_NEXTCLOUD_CONFIG -C $NEXTCLOUD_CONFIG >> $RESTLOGFILE_PATH
 
+tar -vxf $ARQUIVO_TAR $TAR_EMBY_CONFIG -C $EMBY_CONFIG >> $RESTLOGFILE_PATH
+
+# Alterando as Permissões da pasta emby
+
+sudo chown -R emby:emby $EMBY_CONFIG/emby
+sudo chmod –R 755 $EMBY_CONFIG/emby
+
 # Importando Configurações. Informe a data do arquvo extraido dentro da pasta backups no campo $date 
 
 sudo nextcloud.import -abc $NEXTCLOUD_CONFIG/backups/$date >> $RESTLOGFILE_PATH 
+
+# Adicione o Usuário Emby ao grupo Root para acessar as pastas do Nextcloud
+
+sudo adduser emby root
+
+# Inicie o Emby
+
+sudo systemctl start emby-server.service
 
 echo
 echo Done!!
