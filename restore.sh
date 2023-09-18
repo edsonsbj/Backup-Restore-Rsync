@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONFIG="/home/edson/Projeto/Testes/.conf"
+CONFIG="$(dirname "${BASH_SOURCE[0]}")/.conf"
 . $CONFIG
 
 ## ---------------------------------- TESTS ------------------------------ #
@@ -271,18 +271,18 @@ if [[ ! -z $1 ]]; then
 else
     # Display the menu to choose the restore option
     echo "Choose a restore option:"
-    echo "1		 >> Restore Nextcloud configurations, database, and data folder."
-    echo "2              >> Restore Nextcloud configurations and database."
-    echo "3              >> Restore only the Nextcloud data folder. Useful if the folder is stored elsewhere."
-    echo "4              >> Restore Emby Media Server settings."
-    echo "5              >> Restore Nextcloud and Emby Settings."
-    echo "6              >> Restore Nextcloud settings, database and data folder, as well as Emby settings."
-    echo "7              >> Restore Jellyfin Settings."
-    echo "8              >> Restore Nextcloud and Jellyfin Settings."
-    echo "9		 >> Restore Nextcloud settings, database and data folder, as well as Jellyfin settings."
-    echo "10             >> Restore Plex Media Server Settings."
-    echo "11             >> Restore Nextcloud and Plex Media Server Settings."
-    echo "12		 >> Restore Nextcloud settings, database and data folder, as well as Plex Media Server settings."
+    echo "	1	>> Restore Nextcloud configurations, database, and data folder."
+    echo "	2	>> Restore Nextcloud configurations and database."
+    echo "	3	>> Restore only the Nextcloud data folder. Useful if the folder is stored elsewhere."
+    echo "	4	>> Restore Emby Media Server settings."
+    echo "	5	>> Restore Nextcloud and Emby Settings."
+    echo "	6	>> Restore Nextcloud settings, database and data folder, as well as Emby settings."
+    echo "	7	>> Restore Jellyfin Settings."
+    echo "	8	>> Restore Nextcloud and Jellyfin Settings."
+    echo "	9	>> Restore Nextcloud settings, database and data folder, as well as Jellyfin settings."
+    echo "	10	>> Restore Plex Media Server Settings."
+    echo "	11	>> Restore Nextcloud and Plex Media Server Settings."
+    echo "	12	>> Restore Nextcloud settings, database and data folder, as well as Plex Media Server settings."
 
     # Read the option entered by the user
     read option
@@ -327,7 +327,7 @@ else
             ;;
         *)
             echo "Invalid option!"
-            ;;;
+            ;;
     esac
 fi
 
